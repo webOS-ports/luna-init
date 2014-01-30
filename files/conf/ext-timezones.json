@@ -371,7 +371,7 @@
 		{"mcc":284, "Country": "Bulgaria", "CountryCode": "BG", "offsetFromUTC": 120, "supportsDST": 1},
 		{"mcc":286, "Country": "Turkey", "CountryCode": "TR", "offsetFromUTC": 120, "supportsDST": 1},
 		{"mcc":288, "Country": "Faroe Islands", "CountryCode": "FO", "offsetFromUTC": 0, "supportsDST": 1},
-		{"mcc":290, "Country": "Greenland", "CountryCode": "GL", "offsetFromUTC": -180, "supportsDST": 0},
+		{"mcc":290, "Country": "Greenland", "CountryCode": "GL", "offsetFromUTC": -180, "supportsDST": 1},
 		{"mcc":292, "Country": "San Marino", "CountryCode": "SM", "offsetFromUTC": 60, "supportsDST": 1},
 		{"mcc":293, "Country": "Slovenia", "CountryCode": "SI", "offsetFromUTC": 60, "supportsDST": 1},
 		{"mcc":294, "Country": "Macedonia, The Former Yugoslav Republic Of", "CountryCode": "MK", "offsetFromUTC": 60, "supportsDST": 1},
