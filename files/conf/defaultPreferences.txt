@@ -39,6 +39,7 @@
 		"click2play" : true,
 		"enableALS": true,
 		"keyboard": {
+				"activeLanguage": "en",
 				"enabledLanguages": ["en","de","es","fi","fr","ru","sv"],
 				"autoCapitalization": false,
 				"autoCompletion": false,
