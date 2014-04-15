@@ -43,7 +43,7 @@
 				"enabledLanguages": ["en","de","es","fi","fr","ru","sv"],
 				"autoCapitalization": false,
 				"autoCompletion": false,
-				"predictiveText": true,
+				"predictiveText": false,
 				"spellChecking": false,
 				"keyPressFeedback": false
 		}
