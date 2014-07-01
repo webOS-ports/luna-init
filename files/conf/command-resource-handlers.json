@@ -8,8 +8,8 @@
 	
 	"resources":
 	[
-		{ "extn":"htm", "mime":"text/html", "appId":"com.palm.app.browser", "streamable":true },
-		{ "extn":"html", "mime":"text/html", "appId":"com.palm.app.browser", "streamable":true },
+		{ "extn":"htm", "mime":"text/html", "appId":"org.webosports.app.browser", "streamable":true },
+		{ "extn":"html", "mime":"text/html", "appId":"org.webosports.app.browser", "streamable":true },
 		{ "extn":"vcf", "mime":"text/x-vcard", "appId":"com.palm.app.contacts", "streamable":false },
 
 		{ "extn":"pem", "mime":"application/pem", "appId":"com.palm.app.certificate", "streamable":false },
@@ -100,8 +100,8 @@
 		{ "url":"^chatWith:", "appId":"com.palm.app.messaging" },
 		{ "url":"^opencontact:", "appId":"com.palm.app.contacts" },
 		{ "url":"^mojave:", "appId":"com.palm.app.mojave" },
-		{ "url":"^https?:", "appId":"com.palm.app.browser"},
-		{ "url":"^data:", "appId":"com.palm.app.browser"},
+		{ "url":"^https?:", "appId":"org.webosports.app.browser"},
+		{ "url":"^data:", "appId":"org.webosports.app.browser"},
 		{ "url":"^tel:", "appId":"com.palm.app.phone"},
 		{ "url":"^mobi:", "appId":"com.palm.app.videoplayer"},
 		{ "url":"^mapto:", "appId":"com.palm.app.maps"},
