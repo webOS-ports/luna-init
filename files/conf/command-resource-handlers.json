@@ -10,15 +10,15 @@
 	[
 		{ "extn":"htm", "mime":"text/html", "appId":"org.webosports.app.browser", "streamable":true },
 		{ "extn":"html", "mime":"text/html", "appId":"org.webosports.app.browser", "streamable":true },
-		{ "extn":"vcf", "mime":"text/x-vcard", "appId":"com.palm.app.contacts", "streamable":false },
+		{ "extn":"vcf", "mime":"text/x-vcard", "appId":"org.webosports.app.contacts", "streamable":false },
 
-		{ "extn":"pem", "mime":"application/pem", "appId":"com.palm.app.certificate", "streamable":false },
-		{ "extn":"p12", "mime":"application/p12", "appId":"com.palm.app.certificate", "streamable":false },
-		{ "extn":"pfx", "mime":"application/pfx", "appId":"com.palm.app.certificate", "streamable":false },
-		{ "extn":"der", "mime":"application/der", "appId":"com.palm.app.certificate", "streamable":false },
-		{ "extn":"crt", "mime":"application/crt", "appId":"com.palm.app.certificate", "streamable":false },
-		{ "extn":"cer", "mime":"application/cer", "appId":"com.palm.app.certificate", "streamable":false },
-		{ "extn":"crl", "mime":"application/crl", "appId":"com.palm.app.certificate", "streamable":false },
+		{ "extn":"pem", "mime":"application/pem", "appId":"org.webosports.app.settings", "streamable":false },
+		{ "extn":"p12", "mime":"application/p12", "appId":"org.webosports.app.settings", "streamable":false },
+		{ "extn":"pfx", "mime":"application/pfx", "appId":"org.webosports.app.settings", "streamable":false },
+		{ "extn":"der", "mime":"application/der", "appId":"org.webosports.app.settings", "streamable":false },
+		{ "extn":"crt", "mime":"application/crt", "appId":"org.webosports.app.settings", "streamable":false },
+		{ "extn":"cer", "mime":"application/cer", "appId":"org.webosports.app.settings", "streamable":false },
+		{ "extn":"crl", "mime":"application/crl", "appId":"org.webosports.app.settings", "streamable":false },
 
 		{ "extn":"mov", "mime":"video/quicktime", "appId":"com.palm.app.videoplayer", "streamable":true },
 		{ "extn":"mp4", "mime":"video/mp4-generic", "appId":"com.palm.app.videoplayer", "streamable":true },
@@ -87,28 +87,23 @@
 		{ "extn":"dr", "mime":"application/vnd.oma.drm.rights+xml", "appId":"com.palm.app.drm", "streamable":true },
 		{ "extn":"drc", "mime":"application/vnd.oma.drm.rights+wbxml", "appId":"com.palm.app.drm", "streamable":true },
 		{ "extn":"dcf", "mime":"application/vnd.oma.drm.content", "appId":"com.palm.app.drm", "streamable":true },
-		
-		{ "extn":"mcd", "mime":"application/x-pcs-mcd+xml", "appId":"com.palm.mobitv.app.sprinttv", "streamable":true }
 	],
 
 	"commands":
 	[
 		{ "url":"^mailto:", "appId":"com.palm.app.email" },
-		{ "url":"^im:", "appId":"com.palm.app.messaging" },
-		{ "url":"^sms:", "appId":"com.palm.app.messaging" },
-		{ "url":"^contact:", "appId":"com.palm.app.contacts" },
-		{ "url":"^chatWith:", "appId":"com.palm.app.messaging" },
-		{ "url":"^opencontact:", "appId":"com.palm.app.contacts" },
+		{ "url":"^im:", "appId":"org.webosports.app.messaging" },
+		{ "url":"^sms:", "appId":"org.webosports.app.messaging" },
+		{ "url":"^contact:", "appId":"org.webosports.app.contacts" },
+		{ "url":"^chatWith:", "appId":"org.webosports.app.messaging" },
+		{ "url":"^opencontact:", "appId":"org.webosports.app.contacts" },
 		{ "url":"^mojave:", "appId":"com.palm.app.mojave" },
 		{ "url":"^https?:", "appId":"org.webosports.app.browser"},
 		{ "url":"^data:", "appId":"org.webosports.app.browser"},
-		{ "url":"^tel:", "appId":"com.palm.app.phone"},
+		{ "url":"^tel:", "appId":"org.webosports.app.phone"},
 		{ "url":"^mobi:", "appId":"com.palm.app.videoplayer"},
 		{ "url":"^mapto:", "appId":"com.palm.app.maps"},
 		{ "url":"^maploc:", "appId":"com.palm.app.maps"},
 		{ "url":"^rtsp[tu]?:", "appId":"com.palm.app.videoplayer"},
-		{ "url":"^sprinttv:", "appId":"com.palm.mobitv.app.sprinttv" },
-		{ "url":"^sprint-music:", "appId":"com.palm.sprintmusicplus" },
-		{ "url":"^ypc:", "appId":"com.palm.app.ypmobile" }
 	]
 }
