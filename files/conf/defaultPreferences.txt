@@ -40,7 +40,7 @@
 		"enableALS": true,
 		"keyboard": {
 				"activeLanguage": "en",
-				"enabledLanguages": ["en","de","es","fi","fr","ru","sv"],
+				"enabledLanguages": ["en","de","es","fi","fr","ru","sv","ar","cs","da","he","hu","it","nl","pl","pt","zh"],
 				"autoCapitalization": false,
 				"autoCompletion": false,
 				"predictiveText": false,
