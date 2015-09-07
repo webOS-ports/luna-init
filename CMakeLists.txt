@@ -33,6 +33,7 @@ add_custom_command(
 		${CMAKE_SOURCE_DIR}/src/gen-ext-timezones.py
 		-s ${CMAKE_SOURCE_DIR}/src
 		-o ext-timezones.json
+		-w
 	DEPENDS src/gen-ext-timezones.py
 	        src/mccInfo.json
 	        src/uiTzInfo.json
