@@ -45,7 +45,8 @@
 				"autoCompletion": false,
 				"predictiveText": false,
 				"spellChecking": false,
-				"keyPressFeedback": false
+				"keyPressFeedback": false,
+				"keyboardSize": "M"
 		}
 	}
 }
