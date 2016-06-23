@@ -8,7 +8,7 @@
 		"ringtone":				{ "fullPath":"/usr/palm/sounds/ringtone.mp3" , "name":"ringtone.mp3" },
 		"alerttone":			{ "fullPath":"/usr/palm/sounds/alert.wav" , "name":"alert.wav" },
 		"notificationtone":		{ "fullPath":"/usr/palm/sounds/notification.wav" , "name":"notification.wav" },
-		"wallpaper":			{ "wallpaperName":"butterfly.png" , "wallpaperFile":"/media/internal/wallpapers/butterfly.png" , "wallpaperThumbFile":""},
+		"wallpaper":			{ "wallpaperName":"LuneOS.jpg" , "wallpaperFile":"/media/internal/wallpapers/LuneOS.jpg" , "wallpaperThumbFile":""},
 		"airplaneMode":			false,
 		"showAlertsWhenLocked":	true,
 		"LEDThrobberEnabled":	true,
