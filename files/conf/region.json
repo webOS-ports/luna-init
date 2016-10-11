@@ -69,7 +69,7 @@
 		{"shortCountryName":"Kenya",		"countryName":"Kenya",	        "countryCode":"ke"},
 		{"shortCountryName":"Korea",		"countryName":"Korea, Republic of",	"countryCode":"kr"},
                 {"shortCountryName":"Kuwait",           "countryName":"Kuwait",         "countryCode":"kw"},
-                {"shortCountryName":"Kyrgyzstan",       "countryName":"IKyrgyzstan",    "countryCode":"kg"},
+                {"shortCountryName":"Kyrgyzstan",       "countryName":"Kyrgyzstan",    "countryCode":"kg"},
 		{"shortCountryName":"Latvia",		"countryName":"Latvia",         "countryCode":"lv"},
                 {"shortCountryName":"Lebanon",          "countryName":"Lebanon",        "countryCode":"lb"},
 		{"shortCountryName":"Lesotho",		"countryName":"Lesotho",	"countryCode":"ls"},
