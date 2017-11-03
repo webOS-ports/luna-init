@@ -25,6 +25,7 @@
 				 },
 		"defaultWebSearch": ["google"],
 		"lockTimeout":	0,
+		"timeSources": ["ntp","sdp","nitz","broadcast-adjusted","broadcast"],
 		"timeZonesUseGenericExclusively": false,
 		"AllowGenericTimezones" : true,
 		"AllowMCCAssistedTimezones" : true,
