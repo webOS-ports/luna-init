@@ -1,4 +1,4 @@
-{ "mccInfo": [
+[
 	{ "mcc":202, "Country":"Greece" , "CountryCode":"GR",  "offsetFromUTC": 120,  "supportsDST": 1},
 	{ "mcc":204, "Country":"Netherlands" , "CountryCode":"NL",  "offsetFromUTC": 60,  "supportsDST": 1},
 	{ "mcc":206, "Country":"Belgium"  , "CountryCode":"BE",  "offsetFromUTC": 60,  "supportsDST": 1},
@@ -235,4 +235,4 @@
 	{ "mcc":746, "Country":"Suriname" , "CountryCode":"SR",  "offsetFromUTC":-180 ,  "supportsDST":0},
 	{ "mcc":748, "Country":"Uruguay" , "CountryCode":"UY",  "offsetFromUTC":-180 ,  "supportsDST":1},
 	{ "mcc":750, "Country":"Falkland Islands" ,  "CountryCode": "FK",  "offsetFromUTC":-180 ,  "supportsDST":1}
-] }
+]
