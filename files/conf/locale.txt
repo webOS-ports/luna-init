@@ -29,7 +29,7 @@
                                                  {"countryName":"Sudan",        "countryCode":"sd"},
                                                  {"countryName":"Syria",        "countryCode":"sy"},
                                                  {"countryName":"Tunisia",      "countryCode":"tn"},
-                                                 {"countryName":"United Arab Emirates",          "countryCode":"ae"},
+                                                 {"countryName":"UAE",          "countryCode":"ae"},
                                                  {"countryName":"Yemen",        "countryCode":"ye"}
                                            ]
                  },
@@ -51,8 +51,8 @@
                         "languageName":"Bosnian",
                         "languageCode":"bs",
                         "countries":[
-                                                 {"countryName":"Bosnia",     "countryCode":"ba"},
-                                                 {"countryName":"Montenegro", "countryCode":"me"}
+                                                 {"countryName":"Bosnia",     "countryCode":"latn-ba"},
+                                                 {"countryName":"Montenegro", "countryCode":"latn-me"}
                                     ]
                  },
                  {
@@ -78,13 +78,13 @@
                                            ]
                  },
                  {
-                         "languageName":"German",
+                         "languageName":"Deutsch",
                          "languageCode":"de",
                          "countries":[
-                                                 {"countryName":"Germany", "countryCode":"de"},
+                                                 {"countryName":"Deutschland", "countryCode":"de"},
                                                  {"countryName":"Austria",     "countryCode":"at"},
-                                                 {"countryName":"Switzerland",  "countryCode":"ch"},
-                                                 {"countryName":"Luxembourg",   "countryCode":"lu"}
+                                                 {"countryName":"Swizerland",  "countryCode":"ch"},
+                                                 {"countryName":"Luxemburg",   "countryCode":"lu"}
                                            ]
                  },
                  {
@@ -108,6 +108,7 @@
                          "countries":[
                                                  {"countryName":"United States", "countryCode":"us"},
                                                  {"countryName":"United Kingdom","countryCode":"gb"},
+                                                 {"countryName":"Pseudoland",    "countryCode":"pl"},
                                                  {"countryName":"Canada",        "countryCode":"ca"},
                                                  {"countryName":"Ireland",       "countryCode":"ie"},
                                                  {"countryName":"Mexico",        "countryCode":"mx"},
@@ -124,11 +125,9 @@
                                                  {"countryName":"Ghana",         "countryCode":"gh"},
                                                  {"countryName":"Hong Kong",     "countryCode":"hk"},
                                                  {"countryName":"Iceland",       "countryCode":"is"},
-                                                 {"countryName":"Jamaica",       "countryCode":"jm"},
                                                  {"countryName":"Kenya",         "countryCode":"ke"},
                                                  {"countryName":"Liberia",       "countryCode":"lr"},
                                                  {"countryName":"Malawi",        "countryCode":"mw"},
-                                                 {"countryName":"Malta",         "countryCode":"mt"},
                                                  {"countryName":"Myanmar",       "countryCode":"mm"},
                                                  {"countryName":"South Africa",  "countryCode":"za"},
                                                  {"countryName":"Nigeria",       "countryCode":"ng"},
@@ -148,12 +147,12 @@
                                            ]
                  },
                  {
-                         "languageName":"Spanish",
+                         "languageName":"Español",
                          "languageCode":"es",
                          "countries":[
                                                  {"countryName":"Estados Unidos",     "countryCode":"us"},
-                                                 {"countryName":"Spain",             "countryCode":"es"},
-                                                 {"countryName":"Mexico",             "countryCode":"mx"},
+                                                 {"countryName":"España",             "countryCode":"es"},
+                                                 {"countryName":"México",             "countryCode":"mx"},
                                                  {"countryName":"Colombia",           "countryCode":"co"},
                                                  {"countryName":"Guinea Equatorial",  "countryCode":"gq"},
                                                  {"countryName":"Argentina",          "countryCode":"ar"},
@@ -199,7 +198,7 @@
                                            ]
                  },
                  {
-                         "languageName":"French",
+                         "languageName":"Français",
                          "languageCode":"fr",
                          "countries":[
                                                  {"countryName":"France",                   "countryCode":"fr"},
@@ -253,7 +252,7 @@
                          "languageName":"Hebrew",
                          "languageCode":"he",
                          "countries":[
-                                                 {"countryName":"Israel", "countryCode":"il"}
+                                                 {"countryName":"Isreal", "countryCode":"il"}
                                            ]
                  },
                  {
@@ -278,10 +277,10 @@
                                            ]
                  },
                  {
-                         "languageName":"Italian",
+                         "languageName":"Italiano",
                          "languageCode":"it",
                          "countries":[
-                                                 {"countryName":"Italy",      "countryCode":"it"},
+                                                 {"countryName":"Italia",      "countryCode":"it"},
                                                  {"countryName":"Swizerland",  "countryCode":"ch"}
                                            ]
                  },
@@ -303,7 +302,7 @@
                          "languageName":"Kazakh",
                          "languageCode":"kk",
                          "countries":[
-                                                 {"countryName":"Kazakhstan", "countryCode":"kz"}
+                                                 {"countryName":"Kazakhstan", "countryCode":"cyrl-kz"}
                                            ]
                  },
                  {
@@ -318,7 +317,7 @@
                          "languageName":"Kurdish",
                          "languageCode":"ku",
                          "countries":[
-                                                 {"countryName":"Iraq", "countryCode":"iq"}
+                                                 {"countryName":"Iraq", "countryCode":"arab-iq"}
                                            ]
                  },
                  {
@@ -358,13 +357,6 @@
                                            ]
                  },
                  {
-                         "languageName":"Maltese",
-                         "languageCode":"mt",
-                         "countries":[
-                                                 {"countryName":"Malta", "countryCode":"mt"}
-                                           ]
-                 },
-                 {
                          "languageName":"Marathi",
                          "languageCode":"mr",
                          "countries":[
@@ -375,7 +367,7 @@
                          "languageName":"Mongolian",
                          "languageCode":"mn",
                          "countries":[
-                                                 {"countryName":"Mongolia", "countryCode":"mn"}
+                                                 {"countryName":"Mongolia", "countryCode":"cyrl-mn"}
                                            ]
                  },
                  {
@@ -400,8 +392,7 @@
                                                  {"countryName":"Brazil",      "countryCode":"br"},
                                                  {"countryName":"Angola",      "countryCode":"ao"},
                                                  {"countryName":"Cape Verde",  "countryCode":"cv"},
-                                                 {"countryName":"Guinea Equatorial",  "countryCode":"cq"},
-												 {"countryName":"Mozambique",  "countryCode":"mz"}
+                                                 {"countryName":"Guinea Equatorial",  "countryCode":"cq"}
 
                                            ]
                  },
@@ -436,8 +427,8 @@
                          "languageName":"Serbian",
                          "languageCode":"sr",
                          "countries":[
-                                                 {"countryName":"Serbia",     "countryCode":"rs"},
-                                                 {"countryName":"Montenegro", "countryCode":"me"}
+                                                 {"countryName":"Serbia",     "countryCode":"latn-rs"},
+                                                 {"countryName":"Montenegro", "countryCode":"latn-me"}
                                            ]
                  },
                  {
@@ -451,14 +442,7 @@
                          "languageName":"Slovenian",
                          "languageCode":"sl",
                          "countries":[
-                                                 {"countryName":"Slovenia", "countryCode":"si"}
-                                           ]
-                 },
-				 {
-                         "languageName":"Sotho",
-                         "languageCode":"st",
-                         "countries":[
-                                                 {"countryName":"Lesotho", "countryCode":"ls"}
+                                                 {"countryName":"Slovenia", "countryCode":"sl"}
                                            ]
                  },
                  {
@@ -519,7 +503,8 @@
                          "languageName":"Uzbek",
                          "languageCode":"uz",
                          "countries":[
-                                                 {"countryName":"Uzbekistan", "countryCode":"uz"}
+                                                 {"countryName":"Uzbekistan", "countryCode":"cyrl-uz"},
+                                                 {"countryName":"Uzbekistan", "countryCode":"latn-uz"}
                                            ]
                  },
                  {

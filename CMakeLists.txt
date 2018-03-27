@@ -1,6 +1,4 @@
-# @@@LICENSE
-#
-# Copyright (c) 2012-2014 LG Electronics, Inc.
+# Copyright (c) 2012-2018 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# LICENSE@@@
+# SPDX-License-Identifier: Apache-2.0
 
 cmake_minimum_required(VERSION 2.8.7)
 
@@ -31,9 +29,9 @@ add_custom_command(
 	COMMAND echo "Generating ext-timezones.json"
 	COMMAND python2
 		${CMAKE_SOURCE_DIR}/src/gen-ext-timezones.py
+		--white-list-only
 		-s ${CMAKE_SOURCE_DIR}/src
 		-o ext-timezones.json
-		-w
 	DEPENDS src/gen-ext-timezones.py
 	        src/mccInfo.json
 	        src/uiTzInfo.json
@@ -50,6 +48,9 @@ install(DIRECTORY files/conf/ DESTINATION ${WEBOS_INSTALL_WEBOS_PREFIX}
         PATTERN "svn"         EXCLUDE 
         PATTERN ".svn"        EXCLUDE
 	PATTERN "fonts"       EXCLUDE
+	PATTERN "signage"     EXCLUDE
+	PATTERN "apollo"      EXCLUDE
+	PATTERN "defaultPreferences.txt" EXCLUDE
 	PATTERN "region.json" EXCLUDE
 	PATTERN ".json"       PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
 )
@@ -63,9 +64,9 @@ install(FILES files/conf/region.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDI
 
 # install font files /usr/share/fonts
 MESSAGE (STATUS, "Install fonts in ${WEBOS_INSTALL_DATADIR}")
-install(DIRECTORY files/conf/fonts DESTINATION ${WEBOS_INSTALL_DATADIR} 
+install(DIRECTORY files/conf/fonts DESTINATION ${WEBOS_INSTALL_DATADIR}
         PATTERN "fonts.tgz" EXCLUDE
-        PATTERN "svn"  EXCLUDE 
+        PATTERN "svn"  EXCLUDE
         PATTERN ".svn" EXCLUDE
 	PATTERN ".xml" PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
     PATTERN ".ttf" PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE

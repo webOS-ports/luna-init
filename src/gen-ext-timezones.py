@@ -1,7 +1,5 @@
 #!/usr/bin/env python2
-# @@@LICENSE
-#
-# Copyright (c) 2014 LG Electronics, Inc.
+# Copyright (c) 2014-2018 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# SPDX-License-Identifier: Apache-2.0
 # LICENSE@@@
 
 import sys, os.path, os
@@ -25,11 +24,34 @@ import pytz
 import json
 from abbrevs import abbrevs
 
-def findDST(tz, months = [datetime(datetime.utcnow().year, n+1, 1) for n in range(12)]):
+standard_year = datetime.utcnow().year
+
+def supplementOmittedTimeZones():
+	# pytz package keeps own timezone list
+	# New timezone might be omitted if pytz version is old.
+	# pytz.country_timezones() refers all_timezones_set and all_timezones
+	for requiredZone in uiInfo:
+		if requiredZone not in pytz.all_timezones_set:
+			sys.stderr.write("Timezone %s is unknown in current pytz ver. Supplmented\n" % requiredZone)
+			pytz.all_timezones_set.add(requiredZone)
+			pytz.all_timezones.append(requiredZone)
+
+		# America/Montreal was removed in zone.tab after September, 2013.
+		# This means that pytz.country_timezones doesn't include Montreal.
+		# Please refer http://en.wikipedia.org/wiki/America/Montreal
+		# tzdata for Montreal is still supported for backward compatibility.
+		# But, there is no information about that Montreal is in CA. So hard-coded.
+		if requiredZone == 'America/Montreal' and requiredZone not in pytz.country_timezones['CA']:
+			pytz.country_timezones['CA'].append('America/Montreal')
+
+	return
+
+def findDST(tz):
+	months = [datetime(standard_year, n+1, 1) for n in range(12)]
 	try:
 		std = next(dropwhile(lambda m: tz.dst(m).seconds != 0, months))
 	except StopIteration: # next raises this if empty list
-		raise Exception("Standart time should be present in any time-zone (even in %s)" % (tz))
+		raise Exception("Standard time should be present in any time-zone (even in %s)" % (tz))
 	summer = next(chain(dropwhile(lambda m: tz.dst(m).seconds == 0, months), [None]))
 	return (std, summer)
 
@@ -122,8 +144,9 @@ def set_zoneinfo_dir(zoneinfo_dir):
 	pytz.resource_exists = lambda name: os.path.exists(resource_path(name))
 
 
-opts, args = getopt(sys.argv[1:], 'z:o:s:w', longopts=[
-	'zoneinfo-dir=', 'output=', 'source-dir=', 'no-guess', 'white-list-only'
+opts, args = getopt(sys.argv[1:], 'z:o:s:w:y:', longopts=[
+	'zoneinfo-dir=', 'output=', 'source-dir=', 'no-guess', 'white-list-only',
+	'standard-year='
 	])
 
 do_guess = True
@@ -133,6 +156,7 @@ for (opt, val) in opts:
 	elif opt in ('--output', '-o'): output = val
 	elif opt in ('--source-dir', '-s'): source_dir = val
 	elif opt in ('--no-guess', '--white-list-only', '-w'): do_guess = False
+	elif opt in ('--standard-year', '-y'): standard_year = int(val) if val.isdigit() else standard_year
 
 # openembedded sets some env variables. lets guess from one of it where is our sysroot.
 guess_sysroot = os.environ.get('PKG_CONFIG_SYSROOT_DIR')
@@ -144,8 +168,10 @@ if guess_sysroot is not None and is_zoneinfo_default:
 mccInfo = json.load(open(os.path.join(source_dir, 'mccInfo.json'), 'rb'))
 uiInfo = json.load(open(os.path.join(source_dir, 'uiTzInfo.json'), 'rb'))
 
-### load natural timezones from pytz
+### check available timezones in pytz library
+supplementOmittedTimeZones()
 
+### load natural timezones from pytz
 timeZones = list(genTimeZones(do_guess = do_guess))
 timeZones.sort(lambda x, y: cmp(x['offsetFromUTC'], y['offsetFromUTC']))
 
@@ -155,7 +181,7 @@ sysZones = list(genSysZones())
 content = {
 	'timeZone': timeZones,
 	'syszones': sysZones,
-	'mccInfo': mccInfo
+	'mmcInfo': mccInfo
 }
 
 if output is None:

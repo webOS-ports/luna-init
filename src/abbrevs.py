@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-# @@@LICENSE
-#
-# Copyright (c) 2014 LG Electronics, Inc.
+# Copyright (c) 2014-2018 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# LICENSE@@@
+# SPDX-License-Identifier: Apache-2.0
 #
 # Based information from: http://www.timeanddate.com/library/abbreviations/timezones/
+
 
 abbrevs = {
 u"ACDT": u"Australian Central Daylight Time",

@@ -1,6 +1,15 @@
 {
-  "preferences": {
-		"useNetworkTime":		true,
+"preferences": {
+		"timeZone": {
+			"Country": "",
+			"Description": "Manual Time Zone",
+			"ZoneID": "Manual",
+			"City": "",
+			"offsetFromUTC": "NA",
+			"CountryCode": "",
+			"supportsDST": "NA"
+		},
+		"useNetworkTime":		false,
 		"useNetworkTimeZone":	true,
 		"timeFormat":			"HH12",
 		"locale":				{ "languageCode":"en", "countryCode":"us", "phoneRegion": { "countryName":"United States", "countryCode":"us"} },
@@ -28,8 +37,8 @@
 		"timeZonesUseGenericExclusively": false,
 		"AllowGenericTimezones" : true,
 		"AllowMCCAssistedTimezones" : true,
-		"AllowNTPTime" : false,
-		"timeSources" : ["sdp","broadcast-adjusted","broadcast","micom"],
+		"AllowNTPTime" : true,
+		"timeSources" : ["ntp", "sdp","micom"],
 		"timeDriftPeriodHr": -1,
 		"dockModeSoundPref" : "systemsettings",
 		"x_palm_textinput" : {
