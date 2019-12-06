@@ -49,7 +49,7 @@
             "com.palm.app.vpn_default",
             "com.palm.app.wifi_default",
             "org.webosports.app.settings_default",
-            "org.webosinternals.tweaks_default",
+            "org.webosports.app.tweaks_default",
             "org.webosports.cdav.app_default",
             "org.webosports.app.testr_default",
             "sdl2_opengles1_test_default",
