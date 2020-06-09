@@ -20,7 +20,7 @@
 		{ "extn":"cer", "mime":"application/cer", "appId":"org.webosports.app.settings", "streamable":false },
 		{ "extn":"crl", "mime":"application/crl", "appId":"org.webosports.app.settings", "streamable":false },
 
-		{ "extn":"ipk", "mime":"application/vnd.webos.ipk", "appId":"org.webosinternals.preware", "streamable":false },
+		{ "extn":"ipk", "mime":"application/vnd.webos.ipk", "appId":"org.webosports.app.preware", "streamable":false },
 		{ "extn":"pdf", "mime":"pdf", "appId":"org.webosports.app.pdf", "streamable":false },
 		{ "extn":"svg", "mime":"image/svg", "appId":"org.webosports.app.browser", "streamable":false },
 		{ "extn":"png", "mime":"image/png", "appId":"org.webosports.app.photos", "streamable":false }
