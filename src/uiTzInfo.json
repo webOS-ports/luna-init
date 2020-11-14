@@ -24,7 +24,7 @@
     "Description": "Eastern European Time",
     "City": "Beirut"
   },
-  "America/Buenos_Aires": {
+  "America/Argentina/Buenos_Aires": {
     "Country": "Argentina",
     "Description": "Argentina Time",
     "City": "Buenos Aires"
@@ -124,7 +124,7 @@
     "City": "Nairobi"
   },
   "Europe/Simferopol": {
-    "Country": "Ukraine",
+    "Country": "Russia",
     "Description": "Eastern European Time",
     "City": "Simferopol"
   },
@@ -138,11 +138,6 @@
     "Description": "Japan Time",
     "City": "Tokyo"
   },
-  "Asia/Pontianak": {
-    "Country": "Indonesia",
-    "Description": "West Indonesia Time",
-    "City": "Pontianak"
-  },
   "America/Maceio": {
     "Country": "Brazil",
     "Description": "Brasilia Time",
@@ -151,17 +146,12 @@
   "Africa/Abidjan": {
     "Country": "Côte d'Ivoire",
     "Description": "Greenwich Mean Time",
-    "City": "Abidjan"
+    "City": "Yamoussoukro"
   },
   "Europe/Zaporozhye": {
     "Country": "Ukraine",
     "Description": "Eastern European Time",
     "City": "Zaporozhye"
-  },
-  "Asia/Kashgar": {
-    "Country": "China",
-    "Description": "China Time",
-    "City": "Kashgar"
   },
   "America/Detroit": {
     "Country": "United States of America",
@@ -226,11 +216,6 @@
     "Description": "Eastern European Time",
     "City": "Kaliningrad"
   },
-  "Asia/Urumqi": {
-    "Country": "China",
-    "Description": "China Time",
-    "City": "Urumqi"
-  },
   "Pacific/Noumea": {
     "Country": "New Caledonia",
     "Description": "New Caledonia Time",
@@ -259,7 +244,7 @@
   "Africa/Dar_es_Salaam": {
     "Country": "Tanzania",
     "Description": "Eastern African Time",
-    "City": "Dar es Salaam"
+    "City": "Dodoma"
   },
   "Africa/Kampala": {
     "Country": "Uganda",
@@ -316,7 +301,7 @@
     "preferred": true,
     "City": "Athens"
   },
-  "America/Indianapolis": {
+  "America/Indiana/Indianapolis": {
     "Country": "United States of America",
     "Description": "Eastern Time",
     "City": "Indianapolis"
@@ -327,21 +312,16 @@
     "preferred": true,
     "City": "Regina"
   },
-  "Asia/Rangoon": {
+  "Asia/Yangon": {
     "Country": "Myanmar",
     "Description": "Myanmar Time",
     "preferred": true,
-    "City": "Rangoon"
+    "City": "Yangon"
   },
   "Africa/Luanda": {
     "Country": "Angola",
     "Description": "Western African Time",
     "City": "Luanda"
-  },
-  "Asia/Chongqing": {
-    "Country": "China",
-    "Description": "China Time",
-    "City": "Chongqing"
   },
   "America/Mexico_City": {
     "Country": "Mexico",
@@ -352,12 +332,6 @@
     "Country": "Puerto Rico",
     "Description": "Atlantic Time",
     "City": ""
-  },
-  "Pacific/Chatham": {
-    "Country": "New Zealand",
-    "Description": "Chatham Time",
-    "preferred": true,
-    "City": "Chatham Islands"
   },
   "Indian/Mauritius": {
     "Country": "Mauritius",
@@ -414,17 +388,6 @@
     "Description": "Central European Time",
     "City": "Rome"
   },
-  "Asia/Harbin": {
-    "Country": "China",
-    "Description": "China Time",
-    "City": "Harbin"
-  },
-  "Australia/Lord_Howe": {
-    "Country": "Australia",
-    "Description": "Lord Howe Time",
-    "preferred": true,
-    "City": "Lord Howe"
-  },
   "Europe/Samara": {
     "Country": "Russia",
     "Description": "Samara Time",
@@ -435,11 +398,6 @@
     "Country": "Papua New Guinea",
     "Description": "Papua New Guinea Time",
     "City": "Port Moresby"
-  },
-  "Asia/Makassar": {
-    "Country": "Indonesia",
-    "Description": "Central Indonesia Time",
-    "City": "Makassar"
   },
   "Africa/Bujumbura": {
     "Country": "Burundi",
@@ -515,7 +473,7 @@
     "Description": "Atlantic Time",
     "City": "Thule"
   },
-  "America/Louisville": {
+  "America/Kentucky/Louisville": {
     "Country": "United States of America",
     "Description": "Eastern Time",
     "City": "Louisville"
@@ -550,7 +508,7 @@
     "Country": "Cape Verde",
     "Description": "Cape Verde Time",
     "preferred": true,
-    "City": ""
+    "City": "Praia"
   },
   "America/Mazatlan": {
     "Country": "Mexico",
@@ -577,11 +535,6 @@
     "Country": "Serbia",
     "Description": "Central European Time",
     "City": "Belgrade"
-  },
-  "Asia/Choibalsan": {
-    "Country": "Mongolia",
-    "Description": "Choibalsan Time",
-    "City": "Choibalsan"
   },
   "Asia/Kuwait": {
     "Country": "Kuwait",
@@ -649,11 +602,6 @@
     "Description": "Eastern Greenland Time",
     "City": "Scoresbysund"
   },
-  "America/Eirunepe": {
-    "Country": "Brazil",
-    "Description": "Acre Time",
-    "City": "Eirunepé"
-  },
   "Asia/Baghdad": {
     "Country": "Iraq",
     "Description": "Arabia Time",
@@ -697,6 +645,11 @@
     "preferred": true,
     "City": "Kabul"
   },
+  "Asia/Srednekolymsk": {
+    "Country": "Russia",
+    "Description": "Magadan Time",
+    "City": "Srednekolymsk"
+  },
   "Asia/Sakhalin": {
     "Country": "Russia",
     "Description": "Sakhalin Time",
@@ -735,7 +688,7 @@
   "Asia/Jakarta": {
     "Country": "Indonesia",
     "Description": "West Indonesia Time",
-    "City": "Jakarta"
+    "City": "Jakarta - WIB"
   },
   "Atlantic/Reykjavik": {
     "Country": "Iceland",
@@ -963,11 +916,6 @@
     "Description": "Amazon Time",
     "City": "Porto Velho"
   },
-  "Pacific/Galapagos": {
-    "Country": "Ecuador",
-    "Description": "Galapagos Time",
-    "City": "Galapagos Islands"
-  },
   "Europe/Monaco": {
     "Country": "Monaco",
     "Description": "Central European Time",
@@ -1002,11 +950,6 @@
     "Country": "Australia",
     "Description": "Eastern Time (Queensland)",
     "City": "Brisbane"
-  },
-  "Asia/Aqtobe": {
-    "Country": "Kazakhstan",
-    "Description": "Aqtöbe Time",
-    "City": "Aqtöbe"
   },
   "America/Recife": {
     "Country": "Brazil",
@@ -1054,11 +997,6 @@
     "Description": "Bolivia Time",
     "City": "La Paz"
   },
-  "Australia/Broken_Hill": {
-    "Country": "Australia",
-    "Description": "Central Time (South Australia)",
-    "City": "Broken Hill"
-  },
   "Africa/Mogadishu": {
     "Country": "Somalia",
     "Description": "Eastern African Time",
@@ -1095,11 +1033,6 @@
     "Country": "Canada",
     "Description": "Mountain Time",
     "City": "Yellowknife"
-  },
-  "America/Rio_Branco": {
-    "Country": "Brazil",
-    "Description": "Acre Time",
-    "City": "Rio Branco"
   },
   "Africa/Addis_Ababa": {
     "Country": "Ethiopia",
@@ -1162,12 +1095,6 @@
     "Description": "Central European Time",
     "City": "Oslo"
   },
-  "Australia/Eucla": {
-    "Country": "Australia",
-    "Description": "Central Western Time (Australia)",
-    "preferred": true,
-    "City": "Eucla"
-  },
   "Asia/Shanghai": {
     "Country": "China",
     "Description": "China Time",
@@ -1222,7 +1149,7 @@
   "Asia/Bahrain": {
     "Country": "Bahrain",
     "Description": "Arabia Time",
-    "City": ""
+    "City": "Bahrain"
   },
   "Africa/Tunis": {
     "Country": "Tunisia",
@@ -1250,11 +1177,6 @@
     "Description": "Central European Time",
     "City": "Ljubljana"
   },
-  "Asia/Jayapura": {
-    "Country": "Indonesia",
-    "Description": "East Indonesia Time",
-    "City": "Jayapura"
-  },
   "Indian/Mayotte": {
     "Country": "Mayotte",
     "Description": "Eastern African Time",
@@ -1270,11 +1192,23 @@
     "Description": "Mountain Time",
     "City": "Hermosillo"
   },
+  "Africa/Bissau": {
+    "Country": "Guinea-Bissau",
+    "Description": "Greenwich Mean Time",
+    "preferred": true,
+    "City": "Bissau"
+  },
   "Europe/London": {
     "Country": "United Kingdom",
     "Description": "Greenwich Mean Time",
     "preferred": true,
     "City": "London"
+  },
+  "Africa/Conakry": {
+    "Country": "Guinea",
+    "Description": "Greenwich Mean Time",
+    "preferred": true,
+    "City": "Conakry"
   },
   "America/Montevideo": {
     "Country": "Uruguay",
@@ -1306,11 +1240,11 @@
     "Description": "Tajikistan Time",
     "City": "Dushanbe"
   },
-  "Asia/Katmandu": {
+  "Asia/Kathmandu": {
     "Country": "Nepal",
     "Description": "Nepal Time",
     "preferred": true,
-    "City": "Katmandu"
+    "City": "Kathmandu"
   },
   "America/Barbados": {
     "Country": "Barbados",
@@ -1456,7 +1390,7 @@
   "Africa/Porto-Novo": {
     "Country": "Benin",
     "Description": "Western African Time",
-    "City": "Porto-Novo"
+    "City": "Porto Novo"
   },
   "Asia/Samarkand": {
     "Country": "Uzbekistan",
@@ -1489,11 +1423,6 @@
     "preferred": true,
     "City": "Anchorage"
   },
-  "Africa/Ceuta": {
-    "Country": "Spain",
-    "Description": "Central European Time",
-    "City": "Ceuta"
-  },
   "Africa/Ouagadougou": {
     "Country": "Burkina Faso",
     "Description": "Greenwich Mean Time",
@@ -1503,5 +1432,10 @@
     "Country": "Russia",
     "Description": "Omsk Time",
     "City": "Omsk"
+  },
+  "Africa/Lome": {
+    "Country": "Togo",
+    "Description": "Greenwich Mean Time",
+    "City": "Lome"
   }
 }
