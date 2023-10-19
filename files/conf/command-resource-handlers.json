@@ -89,6 +89,11 @@
 		{ "extn":"dcf", "mime":"application/vnd.oma.drm.content", "appId":"com.palm.app.drm", "streamable":true },
 		
 		{ "extn":"mcd", "mime":"application/x-pcs-mcd+xml", "appId":"com.palm.mobitv.app.sprinttv", "streamable":true }
+
+		{ "extn":"ipk", "mime":"application/vnd.webos.ipk", "appId":"org.webosports.app.preware", "streamable":false },
+		{ "extn":"pdf", "mime":"pdf", "appId":"org.webosports.app.pdf", "streamable":false },
+		{ "extn":"png", "mime":"image/png", "appId":"org.webosports.app.photos", "streamable":false }
+		{ "extn":"svg", "mime":"image/svg", "appId":"com.webos.app.enactbrowser", "streamable":false },
 	],
 
 	"commands":
