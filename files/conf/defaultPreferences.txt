@@ -49,6 +49,16 @@
 		},
 		"flashplugins" : true,
 		"click2play" : true,
-		"enableALS": true
+		"enableALS": true,
+		"keyboard": {
+				"activeLanguage": "en",
+				"enabledLanguages": ["en","de","es","fi","fr","ru","sv","ar","cs","da","he","hu","it","nl","pl","pt","zh"],
+				"autoCapitalization": false,
+				"autoCorrection": false,
+				"predictiveText": true,
+				"spellChecking": false,
+				"keyPressFeedback": false,
+				"keyboardSize": "M"
+		}
 	}
 }
