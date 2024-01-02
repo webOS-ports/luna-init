@@ -18,13 +18,13 @@
 
 import sys, os.path, os
 from getopt import gnu_getopt as getopt
-from datetime import datetime
+from datetime import datetime, timezone
 from itertools import *
 import pytz
 import json
 from abbrevs import abbrevs
 
-standard_year = datetime.utcnow().year
+standard_year = datetime.now(timezone.utc).year
 
 def supplementOmittedTimeZones():
 	# pytz package keeps own timezone list
@@ -75,7 +75,7 @@ def genTimeZones(do_guess = True):
 				(std, summer) = findDST(tz)
 			except Exception as e:
 				sys.stderr.write("Exception: %s\n  Do some magic for %s\n" % (e, tz))
-				std = datetime(datetime.utcnow().year, 1, 1)
+				std = datetime(datetime.now(timezone.utc).year, 1, 1)
 				if tz.dst(std).seconds != 0: summer = std
 				else: summer = None
 			except StopIteration:
