@@ -202,7 +202,7 @@ sysZones = list(genSysZones())
 content = {
 	'timeZone': timeZones,
 	'syszones': sysZones,
-	'mmcInfo': mccInfo
+	'mccInfo': mccInfo
 }
 
 if output is None:
