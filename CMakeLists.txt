@@ -42,16 +42,17 @@ set(ext_timezones_json ${CMAKE_CURRENT_BINARY_DIR}/ext-timezones.json)
 
 add_custom_target(generate ALL DEPENDS ext-timezones.json)
 
-# install json files in /usr/palm
-MESSAGE (STATUS, "Install json files in ${WEBOS_INSTALL_WEBOS_PREFIX}")
-install(FILES files/conf/command-resource-handlers.json DESTINATION ${WEBOS_INSTALL_WEBOS_PREFIX}
+# install json files in /etc/palm
+MESSAGE (STATUS, "Install json files in ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}")
+install(FILES files/conf/command-resource-handlers.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
-install(FILES files/conf/default-dock-positions.json DESTINATION ${WEBOS_INSTALL_WEBOS_PREFIX}
+install(FILES files/conf/default-dock-positions.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
-install(FILES files/conf/default-launcher-page-layout.json DESTINATION ${WEBOS_INSTALL_WEBOS_PREFIX}
+install(FILES files/conf/default-launcher-page-layout.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
-install(FILES files/conf/locale.txt DESTINATION ${WEBOS_INSTALL_WEBOS_PREFIX}
+install(FILES files/conf/locale.txt DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
+# Except for ext_timezones.json which is expected in /usr/palm as per https://github.com/webosose/luna-sysservice/blob/16eca0bf1b09bbbfeabbbb06c782b3167ea7979f/Src/TimePrefsHandler.cpp#L53
 install(FILES ${ext_timezones_json} DESTINATION ${WEBOS_INSTALL_WEBOS_PREFIX}
 	PERMISSIONS OWNER_READ OWNER_WRITE)
 
