@@ -155,9 +155,11 @@ def set_zoneinfo_dir(zoneinfo_dir):
 	def resource_path(name):
 		if os.path.isabs(name):
 			raise ValueError('Bad path (absolute): %r' % name)
-		name_parts = os.path.split(name)
+		# Split on every separator: os.path.split() only peels off the last
+		# component, which let '..' hide inside the head (e.g. 'a/../../b').
+		name_parts = name.split('/')
 		for part in name_parts:
-			if part == os.path.pardir:
+			if part == os.path.pardir or os.sep in part or (os.path.altsep and os.path.altsep in part):
 				raise ValueError('Bad path segment: %r' % part)
 		filepath = os.path.join(zoneinfo_dir, *name_parts)
 		return filepath
