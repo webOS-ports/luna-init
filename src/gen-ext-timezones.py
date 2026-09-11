@@ -60,11 +60,13 @@ def supplementOmittedTimeZones():
 
 def findDST(tz):
 	months = [datetime(standard_year, n+1, 1) for n in range(12)]
+	# Compare via total_seconds(): timedelta.seconds is only the seconds
+	# component and reports 82800 for a negative one-hour DST offset.
 	try:
-		std = next(dropwhile(lambda m: tz.dst(m).seconds != 0, months))
+		std = next(dropwhile(lambda m: tz.dst(m).total_seconds() != 0, months))
 	except StopIteration: # next raises this if empty list
 		raise Exception("Standard time should be present in any time-zone (even in %s)" % (tz))
-	summer = next(chain(dropwhile(lambda m: tz.dst(m).seconds == 0, months), [None]))
+	summer = next(chain(dropwhile(lambda m: tz.dst(m).total_seconds() == 0, months), [None]))
 	return (std, summer)
 
 def genTimeZones(do_guess = True):
@@ -76,10 +78,8 @@ def genTimeZones(do_guess = True):
 			except Exception as e:
 				sys.stderr.write("Exception: %s\n  Do some magic for %s\n" % (e, tz))
 				std = datetime(datetime.now(timezone.utc).year, 1, 1)
-				if tz.dst(std).seconds != 0: summer = std
+				if tz.dst(std).total_seconds() != 0: summer = std
 				else: summer = None
-			except StopIteration:
-				raise Exception("Unexpected StopIteration")
 
 			# use Country from tzdata
 			country = pytz.country_names[cc]
@@ -105,7 +105,6 @@ def genTimeZones(do_guess = True):
 				preferred = info.get('preferred', False)
 
 			if zoneId == "Europe/Kyiv":
-				zoneId = "Europe/Kyiv"
 				city = "Kyiv"
 			if zoneId == "America/Godthab":
 				zoneId = "America/Nuuk"
@@ -193,8 +192,10 @@ if guess_sysroot is not None and is_zoneinfo_default:
 
 
 ### load reference files
-mccInfo = json.load(open(os.path.join(source_dir, 'mccInfo.json'), 'r'))
-uiInfo = json.load(open(os.path.join(source_dir, 'uiTzInfo.json'), 'r'))
+with open(os.path.join(source_dir, 'mccInfo.json'), 'r') as f:
+	mccInfo = json.load(f)
+with open(os.path.join(source_dir, 'uiTzInfo.json'), 'r') as f:
+	uiInfo = json.load(f)
 
 ### check available timezones in pytz library
 supplementOmittedTimeZones()
