@@ -43,7 +43,7 @@ set(ext_timezones_json ${CMAKE_CURRENT_BINARY_DIR}/ext-timezones.json)
 add_custom_target(generate ALL DEPENDS ext-timezones.json)
 
 # install json files in /etc/palm
-MESSAGE (STATUS, "Install json files in ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}")
+MESSAGE (STATUS "Install json files in ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}")
 install(FILES files/conf/command-resource-handlers.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
 install(FILES files/conf/default-dock-positions.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
@@ -57,22 +57,22 @@ install(FILES src/mccInfo.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
 # Except for ext_timezones.json which is expected in /usr/palm as per https://github.com/webosose/luna-sysservice/blob/16eca0bf1b09bbbfeabbbb06c782b3167ea7979f/Src/TimePrefsHandler.cpp#L53
 install(FILES ${ext_timezones_json} DESTINATION ${WEBOS_INSTALL_WEBOS_PREFIX}
-	PERMISSIONS OWNER_READ OWNER_WRITE)
+	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
 
 # install region json file in /etc/palm
-MESSAGE (STATUS, "Install region.json in ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}")
+MESSAGE (STATUS "Install region.json in ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}")
 install(FILES files/conf/region.json DESTINATION ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}
-	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
+	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
 
 # install font files /usr/share/fonts
-MESSAGE (STATUS, "Install fonts in ${WEBOS_INSTALL_DATADIR}")
+MESSAGE (STATUS "Install fonts in ${WEBOS_INSTALL_DATADIR}")
 install(DIRECTORY files/conf/fonts DESTINATION ${WEBOS_INSTALL_DATADIR}
         PATTERN "fonts.tgz" EXCLUDE
         PATTERN "svn"  EXCLUDE
         PATTERN ".svn" EXCLUDE
-        PATTERN ".xml" PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-        PATTERN ".ttf" PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-        PATTERN ".txt" PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        PATTERN "*.xml" PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+        PATTERN "*.ttf" PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+        PATTERN "*.txt" PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )
 
 # Can be replaced with a distro-specific version by recipe
