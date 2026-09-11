@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 LG Electronics, Inc.
+# Copyright (c) 2026 Herman van Hazendonk <github.com@herrie.org>
 # SPDX-License-Identifier: Apache-2.0
 #
 # Host-side test entry point for luna-init. Usage: tests/run-tests.sh [python3]

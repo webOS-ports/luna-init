@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 LG Electronics, Inc.
+# Copyright (c) 2026 Herman van Hazendonk <github.com@herrie.org>
 # SPDX-License-Identifier: Apache-2.0
 #
 # Host-side driver: pushes the timezone stress test to a LuneOS device over
