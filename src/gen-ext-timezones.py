@@ -17,7 +17,7 @@
 # LICENSE@@@
 
 import sys, os.path, os
-from getopt import gnu_getopt as getopt
+from getopt import gnu_getopt as getopt, GetoptError
 from datetime import datetime, timezone
 from itertools import *
 import pytz
@@ -167,10 +167,15 @@ def set_zoneinfo_dir(zoneinfo_dir):
 	pytz.resource_exists = lambda name: os.path.exists(resource_path(name))
 
 
-opts, args = getopt(sys.argv[1:], 'z:o:s:w:y:', longopts=[
-	'zoneinfo-dir=', 'output=', 'source-dir=', 'no-guess', 'white-list-only',
-	'standard-year='
-	])
+try:
+	opts, args = getopt(sys.argv[1:], 'z:o:s:wy:', longopts=[
+		'zoneinfo-dir=', 'output=', 'source-dir=', 'no-guess', 'white-list-only',
+		'standard-year='
+		])
+except GetoptError as e:
+	sys.stderr.write("%s\nUsage: %s [-z zoneinfo-dir] [-o output] [-s source-dir] [-w|--no-guess|--white-list-only] [-y standard-year]\n"
+		% (e, sys.argv[0]))
+	sys.exit(2)
 
 do_guess = True
 
@@ -211,7 +216,8 @@ if output is None:
 	import re
 	s = json.dumps(content, ensure_ascii = False, indent = 2)
 	s = re.sub(r'\s+$', '', s, flags = re.MULTILINE) + '\n'
-	sys.stdout.write(s.encode('utf8'))
+	sys.stdout.buffer.write(s.encode('utf8'))
 else:
 	s = json.dumps(content, ensure_ascii = False, indent = None, separators = (',', ':')) + '\n'
-	open(output,'wb').write(s.encode('utf8'))
+	with open(output, 'wb') as f:
+		f.write(s.encode('utf8'))
