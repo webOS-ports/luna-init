@@ -23,7 +23,8 @@ webos_modules_init(1 0 0 QUALIFIER RC3)
 webos_component(2 0 1)
 webos_config_build_doxygen(doc Doxyfile)
 
-# ext-timezones.json
+# ext-timezones.json, validated together with the static config files so a
+# malformed data file fails the build instead of shipping to devices
 add_custom_command(
 	OUTPUT ext-timezones.json
 	COMMAND echo "Generating ext-timezones.json"
@@ -32,15 +33,23 @@ add_custom_command(
 		--white-list-only
 		-s ${CMAKE_SOURCE_DIR}/src
 		-o ext-timezones.json
+	COMMAND $ENV{PYTHON}
+		${CMAKE_SOURCE_DIR}/tests/validate-configs.py
+		--root ${CMAKE_SOURCE_DIR}
+		--ext ext-timezones.json
 	DEPENDS src/gen-ext-timezones.py
 	        src/mccInfo.json
 	        src/uiTzInfo.json
 	        src/abbrevs.py
+	        tests/validate-configs.py
 )
 
 set(ext_timezones_json ${CMAKE_CURRENT_BINARY_DIR}/ext-timezones.json)
 
 add_custom_target(generate ALL DEPENDS ext-timezones.json)
+
+enable_testing()
+add_test(NAME luna-init-tests COMMAND ${CMAKE_SOURCE_DIR}/tests/run-tests.sh)
 
 # install json files in /etc/palm
 MESSAGE (STATUS "Install json files in ${WEBOS_INSTALL_WEBOS_SYSCONFDIR}")
