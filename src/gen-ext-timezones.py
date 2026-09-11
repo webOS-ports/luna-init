@@ -192,10 +192,42 @@ if guess_sysroot is not None and is_zoneinfo_default:
 
 
 ### load reference files
-with open(os.path.join(source_dir, 'mccInfo.json'), 'r') as f:
-	mccInfo = json.load(f)
-with open(os.path.join(source_dir, 'uiTzInfo.json'), 'r') as f:
-	uiInfo = json.load(f)
+def loadReference(name, validate):
+	path = os.path.join(source_dir, name)
+	try:
+		with open(path, 'r') as f:
+			data = json.load(f)
+	except (OSError, ValueError) as e:
+		sys.stderr.write("%s: cannot load reference file: %s\n" % (path, e))
+		sys.exit(1)
+	problem = validate(data)
+	if problem:
+		sys.stderr.write("%s: %s\n" % (path, problem))
+		sys.exit(1)
+	return data
+
+def validateMccInfo(data):
+	entries = data.get('mccInfo') if isinstance(data, dict) else None
+	if not isinstance(entries, list) or not entries:
+		return "top-level 'mccInfo' must be a non-empty list"
+	for entry in entries:
+		if not isinstance(entry, dict) or not isinstance(entry.get('mcc'), int) \
+				or not isinstance(entry.get('CountryCode'), str) \
+				or not isinstance(entry.get('offsetFromUTC'), int):
+			return "malformed entry: %r" % (entry,)
+	return None
+
+def validateUiInfo(data):
+	if not isinstance(data, dict) or not data:
+		return "must be a non-empty object keyed by ZoneID"
+	for zone, info in data.items():
+		if not isinstance(info, dict) or not isinstance(info.get('City'), str) \
+				or not isinstance(info.get('Description'), str) or not info['Description']:
+			return "malformed entry for zone %r: %r" % (zone, info)
+	return None
+
+mccInfo = loadReference('mccInfo.json', validateMccInfo)
+uiInfo = loadReference('uiTzInfo.json', validateUiInfo)
 
 ### check available timezones in pytz library
 supplementOmittedTimeZones()
@@ -220,5 +252,14 @@ if output is None:
 	sys.stdout.buffer.write(s.encode('utf8'))
 else:
 	s = json.dumps(content, ensure_ascii = False, indent = None, separators = (',', ':')) + '\n'
-	with open(output, 'wb') as f:
-		f.write(s.encode('utf8'))
+	# Write via a sibling temp file and rename so a crash or full disk can
+	# never leave a truncated ext-timezones.json for the build to install.
+	tmp = output + '.tmp'
+	try:
+		with open(tmp, 'wb') as f:
+			f.write(s.encode('utf8'))
+		os.replace(tmp, output)
+	except BaseException:
+		try: os.unlink(tmp)
+		except OSError: pass
+		raise
