@@ -5,7 +5,7 @@
 	[
 		{ "url":"^https?://developer.palm.com/appredirect/?", "appId":"com.palm.app.enyo-findapps" }
 	],
-	
+
 	"resources":
 	[
 		{ "extn":"htm", "mime":"text/html", "appId":"com.webos.app.enactbrowser", "streamable":true },
@@ -73,10 +73,10 @@
 		{ "extn":"aac", "mime":"audio/mp4a-latm", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
 		{ "extn":"wav", "mime":"audio/wav", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
 		{ "extn":"wav", "mime":"audio/x-wav", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
-		{ "extn":"oga", "mime":"audio/ogg", "appId":"com.palm.app.streamingmusicplayer", "streamable":true }, 
-		{ "extn":"ogg", "mime":"audio/ogg", "appId":"com.palm.app.streamingmusicplayer", "streamable":true }, 
-		{ "extn":"flac", "mime":"audio/flac", "appId":"com.palm.app.streamingmusicplayer", "streamable":true }, 
-		{ "extn":"wma", "mime":"audio/x-ms-wma", "appId":"com.palm.app.streamingmusicplayer", "streamable":true }, 
+		{ "extn":"oga", "mime":"audio/ogg", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
+		{ "extn":"ogg", "mime":"audio/ogg", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
+		{ "extn":"flac", "mime":"audio/flac", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
+		{ "extn":"wma", "mime":"audio/x-ms-wma", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
 
 		{ "extn":"pls", "mime":"audio/x-scpls", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
 		{ "extn":"m3u", "mime":"audio/mpegurl", "appId":"com.palm.app.streamingmusicplayer", "streamable":true },
@@ -87,7 +87,7 @@
 		{ "extn":"dr", "mime":"application/vnd.oma.drm.rights+xml", "appId":"com.palm.app.drm", "streamable":true },
 		{ "extn":"drc", "mime":"application/vnd.oma.drm.rights+wbxml", "appId":"com.palm.app.drm", "streamable":true },
 		{ "extn":"dcf", "mime":"application/vnd.oma.drm.content", "appId":"com.palm.app.drm", "streamable":true },
-		
+
 		{ "extn":"mcd", "mime":"application/x-pcs-mcd+xml", "appId":"com.palm.mobitv.app.sprinttv", "streamable":true },
 
 		{ "extn":"ipk", "mime":"application/vnd.webos.ipk", "appId":"org.webosports.app.preware", "streamable":false },
