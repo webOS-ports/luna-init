@@ -125,9 +125,12 @@ def genTimeZones(do_guess = True):
 			yield entry
 
 def genSysZones():
-	for offset in takewhile(lambda x: x < 12.5, count(-14, 0.5)):
-		offset_str = str(abs(int(offset)))
-		if offset != int(offset): offset_str = offset_str + ":30"
+	# tzdata only ships whole-hour Etc zones: Etc/GMT+1..Etc/GMT+12,
+	# Etc/GMT-1..Etc/GMT-14 and the GMT-0/GMT+0 aliases. The half-hour
+	# Etc/GMT±N:30 entries formerly generated here named zones that do
+	# not exist, so selecting one silently fell back to GMT.
+	for offset in range(-14, 13):
+		offset_str = str(abs(offset))
 		if offset > 0: ids = [('Etc/GMT+%s' % offset_str, 'GMT-%s' % offset_str)]
 		elif offset < 0: ids = [('Etc/GMT-%s' % offset_str, 'GMT+%s' % offset_str)]
 		else: ids = [('Etc/' + x, 'GMT') for x in ['GMT-0', 'GMT+0']]
@@ -137,7 +140,7 @@ def genSysZones():
 				'CountryCode': '',
 				'ZoneID': zoneId,
 				'supportsDST': 0,
-				'offsetFromUTC': int(-offset*60),
+				'offsetFromUTC': -offset*60,
 				'Description': id,
 				'City': ''
 			}

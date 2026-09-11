@@ -151,10 +151,15 @@ def validate_ext_timezones(path):
 			fail(path, "%s: duplicate (ZoneID, CountryCode)" % where)
 		seen.add(key)
 	syszones = data.get('syszones')
-	# GMT-12 .. GMT+14 in whole and half hours, with GMT twice (GMT-0/GMT+0)
-	if not isinstance(syszones, list) or len(syszones) != 54:
-		fail(path, "'syszones' must list exactly 54 Etc/* zones (got %s)"
+	# Whole hours GMT-12 .. GMT+14, with GMT twice (Etc/GMT-0 and Etc/GMT+0).
+	# tzdata ships no half-hour Etc zones, so none may appear here.
+	if not isinstance(syszones, list) or len(syszones) != 28:
+		fail(path, "'syszones' must list exactly 28 Etc/* zones (got %s)"
 			% (len(syszones) if isinstance(syszones, list) else type(syszones).__name__))
+	for entry in syszones if isinstance(syszones, list) else []:
+		zone = entry.get('ZoneID', '')
+		if not re.fullmatch(r'Etc/GMT[+-]\d{1,2}', zone):
+			fail(path, "syszone %r: not a whole-hour Etc/GMT zone shipped by tzdata" % zone)
 	if 'mccInfo' not in data:
 		fail(path, "'mccInfo' section is missing")
 
