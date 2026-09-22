@@ -36,4 +36,4 @@ for tz in original['timeZone']:
 
 s = json.dumps(ui_info, ensure_ascii = False, indent = 2)
 s = re.sub(r'\s+$', '', s, flags = re.MULTILINE) + '\n'
-sys.stdout.write(s.encode('utf8'))
+sys.stdout.buffer.write(s.encode('utf8'))

@@ -17,7 +17,7 @@
 # LICENSE@@@
 
 import sys, os.path, os
-from getopt import gnu_getopt as getopt
+from getopt import gnu_getopt as getopt, GetoptError
 from datetime import datetime, timezone
 from itertools import *
 import pytz
@@ -60,11 +60,13 @@ def supplementOmittedTimeZones():
 
 def findDST(tz):
 	months = [datetime(standard_year, n+1, 1) for n in range(12)]
+	# Compare via total_seconds(): timedelta.seconds is only the seconds
+	# component and reports 82800 for a negative one-hour DST offset.
 	try:
-		std = next(dropwhile(lambda m: tz.dst(m).seconds != 0, months))
+		std = next(dropwhile(lambda m: tz.dst(m).total_seconds() != 0, months))
 	except StopIteration: # next raises this if empty list
 		raise Exception("Standard time should be present in any time-zone (even in %s)" % (tz))
-	summer = next(chain(dropwhile(lambda m: tz.dst(m).seconds == 0, months), [None]))
+	summer = next(chain(dropwhile(lambda m: tz.dst(m).total_seconds() == 0, months), [None]))
 	return (std, summer)
 
 def genTimeZones(do_guess = True):
@@ -76,10 +78,8 @@ def genTimeZones(do_guess = True):
 			except Exception as e:
 				sys.stderr.write("Exception: %s\n  Do some magic for %s\n" % (e, tz))
 				std = datetime(datetime.now(timezone.utc).year, 1, 1)
-				if tz.dst(std).seconds != 0: summer = std
+				if tz.dst(std).total_seconds() != 0: summer = std
 				else: summer = None
-			except StopIteration:
-				raise Exception("Unexpected StopIteration")
 
 			# use Country from tzdata
 			country = pytz.country_names[cc]
@@ -105,7 +105,6 @@ def genTimeZones(do_guess = True):
 				preferred = info.get('preferred', False)
 
 			if zoneId == "Europe/Kyiv":
-				zoneId = "Europe/Kyiv"
 				city = "Kyiv"
 			if zoneId == "America/Godthab":
 				zoneId = "America/Nuuk"
@@ -126,9 +125,12 @@ def genTimeZones(do_guess = True):
 			yield entry
 
 def genSysZones():
-	for offset in takewhile(lambda x: x < 12.5, count(-14, 0.5)):
-		offset_str = str(abs(int(offset)))
-		if offset != int(offset): offset_str = offset_str + ":30"
+	# tzdata only ships whole-hour Etc zones: Etc/GMT+1..Etc/GMT+12,
+	# Etc/GMT-1..Etc/GMT-14 and the GMT-0/GMT+0 aliases. The half-hour
+	# Etc/GMT±N:30 entries formerly generated here named zones that do
+	# not exist, so selecting one silently fell back to GMT.
+	for offset in range(-14, 13):
+		offset_str = str(abs(offset))
 		if offset > 0: ids = [('Etc/GMT+%s' % offset_str, 'GMT-%s' % offset_str)]
 		elif offset < 0: ids = [('Etc/GMT-%s' % offset_str, 'GMT+%s' % offset_str)]
 		else: ids = [('Etc/' + x, 'GMT') for x in ['GMT-0', 'GMT+0']]
@@ -138,7 +140,7 @@ def genSysZones():
 				'CountryCode': '',
 				'ZoneID': zoneId,
 				'supportsDST': 0,
-				'offsetFromUTC': int(-offset*60),
+				'offsetFromUTC': -offset*60,
 				'Description': id,
 				'City': ''
 			}
@@ -155,9 +157,11 @@ def set_zoneinfo_dir(zoneinfo_dir):
 	def resource_path(name):
 		if os.path.isabs(name):
 			raise ValueError('Bad path (absolute): %r' % name)
-		name_parts = os.path.split(name)
+		# Split on every separator: os.path.split() only peels off the last
+		# component, which let '..' hide inside the head (e.g. 'a/../../b').
+		name_parts = name.split('/')
 		for part in name_parts:
-			if part == os.path.pardir:
+			if part == os.path.pardir or os.sep in part or (os.path.altsep and os.path.altsep in part):
 				raise ValueError('Bad path segment: %r' % part)
 		filepath = os.path.join(zoneinfo_dir, *name_parts)
 		return filepath
@@ -165,10 +169,15 @@ def set_zoneinfo_dir(zoneinfo_dir):
 	pytz.resource_exists = lambda name: os.path.exists(resource_path(name))
 
 
-opts, args = getopt(sys.argv[1:], 'z:o:s:w:y:', longopts=[
-	'zoneinfo-dir=', 'output=', 'source-dir=', 'no-guess', 'white-list-only',
-	'standard-year='
-	])
+try:
+	opts, args = getopt(sys.argv[1:], 'z:o:s:wy:', longopts=[
+		'zoneinfo-dir=', 'output=', 'source-dir=', 'no-guess', 'white-list-only',
+		'standard-year='
+		])
+except GetoptError as e:
+	sys.stderr.write("%s\nUsage: %s [-z zoneinfo-dir] [-o output] [-s source-dir] [-w|--no-guess|--white-list-only] [-y standard-year]\n"
+		% (e, sys.argv[0]))
+	sys.exit(2)
 
 do_guess = True
 
@@ -186,8 +195,42 @@ if guess_sysroot is not None and is_zoneinfo_default:
 
 
 ### load reference files
-mccInfo = json.load(open(os.path.join(source_dir, 'mccInfo.json'), 'r'))
-uiInfo = json.load(open(os.path.join(source_dir, 'uiTzInfo.json'), 'r'))
+def loadReference(name, validate):
+	path = os.path.join(source_dir, name)
+	try:
+		with open(path, 'r') as f:
+			data = json.load(f)
+	except (OSError, ValueError) as e:
+		sys.stderr.write("%s: cannot load reference file: %s\n" % (path, e))
+		sys.exit(1)
+	problem = validate(data)
+	if problem:
+		sys.stderr.write("%s: %s\n" % (path, problem))
+		sys.exit(1)
+	return data
+
+def validateMccInfo(data):
+	entries = data.get('mccInfo') if isinstance(data, dict) else None
+	if not isinstance(entries, list) or not entries:
+		return "top-level 'mccInfo' must be a non-empty list"
+	for entry in entries:
+		if not isinstance(entry, dict) or not isinstance(entry.get('mcc'), int) \
+				or not isinstance(entry.get('CountryCode'), str) \
+				or not isinstance(entry.get('offsetFromUTC'), int):
+			return "malformed entry: %r" % (entry,)
+	return None
+
+def validateUiInfo(data):
+	if not isinstance(data, dict) or not data:
+		return "must be a non-empty object keyed by ZoneID"
+	for zone, info in data.items():
+		if not isinstance(info, dict) or not isinstance(info.get('City'), str) \
+				or not isinstance(info.get('Description'), str) or not info['Description']:
+			return "malformed entry for zone %r: %r" % (zone, info)
+	return None
+
+mccInfo = loadReference('mccInfo.json', validateMccInfo)
+uiInfo = loadReference('uiTzInfo.json', validateUiInfo)
 
 ### check available timezones in pytz library
 supplementOmittedTimeZones()
@@ -209,7 +252,17 @@ if output is None:
 	import re
 	s = json.dumps(content, ensure_ascii = False, indent = 2)
 	s = re.sub(r'\s+$', '', s, flags = re.MULTILINE) + '\n'
-	sys.stdout.write(s.encode('utf8'))
+	sys.stdout.buffer.write(s.encode('utf8'))
 else:
 	s = json.dumps(content, ensure_ascii = False, indent = None, separators = (',', ':')) + '\n'
-	open(output,'wb').write(s.encode('utf8'))
+	# Write via a sibling temp file and rename so a crash or full disk can
+	# never leave a truncated ext-timezones.json for the build to install.
+	tmp = output + '.tmp'
+	try:
+		with open(tmp, 'wb') as f:
+			f.write(s.encode('utf8'))
+		os.replace(tmp, output)
+	except BaseException:
+		try: os.unlink(tmp)
+		except OSError: pass
+		raise
