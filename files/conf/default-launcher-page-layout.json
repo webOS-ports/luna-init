@@ -2,7 +2,7 @@
     {
         "title" : "apps",
         "items" : [
-            "org.webosports.app.browser_default",
+            "org.webosports.app.atlas_default",
             "com.palm.app.email_default",
             "com.palm.app.calendar_default",
             "org.webosports.app.messaging_default",
@@ -21,7 +21,7 @@
     {
         "title" : "downloads",
         "items" : [
-            "org.webosports.app.preware_default"
+            "com.palm.app.preware2_default"
         ]
     },
     {
